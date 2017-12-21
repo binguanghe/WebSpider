@@ -30,6 +30,7 @@ function Spider(){
 		res.on('end', function(){  
 			var $ = cheerio.load(html);
 			var num = 0;
+			var website = "虎嗅网";
 			$(".mob-ctt").each(function(index, item){
 				//获取标题
 				var title = $(this).children().children().first().text();
@@ -37,6 +38,7 @@ function Spider(){
 				var url = "https://www.huxiu.com" + $(this).children().children().first().attr("href");
 				var NewsEntity = new news({
 				    num: num+=1,
+				    website: website,
 				    title: title,
 				    url: url
 				});

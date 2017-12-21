@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 //news
 var newsSchema = new Schema(
     {
+        website:String,
         num : Number,
         title : String,
         url : String

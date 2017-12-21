@@ -4,11 +4,19 @@ var app = express();
 
 //请求
 app.get('/', function(req, res){
-	news.find({num:1}, function(err,result){
+	news.find({}, {"num":1,"title":1,"url":1,"_id":0}, function(err, result){
 		if(err){
 			console.log(err);
 		}else{
-			res.send("<a href=" + result[0].url + ">" + result[0].title + "</a>");
+			 var newsList = (function(){
+			 	var total = "";
+			 	for(var i=0;i<result.length;i++){
+			 		total += result[i].title + result[i].url + "\n";
+			 	}
+			 	return total;
+			 })()
+			 res.send(newsList);
+			 res.end();
 		}
 	})
 });
