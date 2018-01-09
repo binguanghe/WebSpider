@@ -1,57 +1,40 @@
 var http = require('http');
-var fs = require('fs');
 var https = require('https');
 var cheerio = require('cheerio');
-
-//数据库spider集合news
-var news = require('./db/database.js').news;
+import { rulers } from './ruler/ruler.js'
 
 //请求函数
 function Spider(ruler){
 	https.get(ruler.getOptions, function(res){
 		var html = '';
+		//设置编码，防止中文出现乱码
 		res.setEncoding('utf-8');
-		//监听data事件
+		//监听data事件，分段获取抓取的数据
 		res.on('data', function(chunk){
 			html += chunk;
 		});
 		//监听end事件,响应接收完成后处理
 		res.on('end', function(){  
 			var $ = cheerio.load(html);
+			//根据类名逐条遍历
 			$(ruler.className).each(function(index, item){
-				var NewsEntity = new news({
-				    num: ruler.num+=1,
+				var collectionEntity = new ruler.collectionName({
+				    num: ruler.num += 1,
 				    website: ruler.website,
 				    title: eval(ruler.title),
 				    url: eval(ruler.url)
 				});
-
 				//保存数据到数据库
-				NewsEntity.save(function(err, doc){
+				collectionEntity.save(function(err, doc){
 				    if(err){
-				        console.log("err"+err);
+				        console.log("Database err: " + err);
 				    }else{
-				        console.log(doc)
+				        console.log(doc);
 				    }
 				});
-		  });	
+		    });	
 		});
 	});
 }
 
-//定义规则
-var ruler = {
-	getOptions: {
-		host: "www.huxiu.com",
-		path: "",
-		headers: {
-		'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36'
-	    }
-	},
-	className: ".mob-ctt",
-	num: 0,
-	website: "虎嗅网",
-	title: "$(this).children().children().first().text()",
-	url: '"https://www.huxiu.com" + $(this).children().children().first().attr("href")',
-}
-Spider(ruler)
+Spider(rulers[0]);
