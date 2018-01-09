@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var db = mongoose.connect('mongodb://localhost/spider');
 var Schema = mongoose.Schema;
 
-//news
 var newsSchema = new Schema(
     {
         website:String,
@@ -13,4 +12,7 @@ var newsSchema = new Schema(
     { versionKey: false}//关闭版本锁
 );
 
-exports.news = db.model('news', newsSchema);
+var huxiu = db.model('huxiu', newsSchema);
+var kr36 = db.model('kr36', newsSchema);
+
+export { huxiu, kr36 }
