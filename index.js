@@ -1,11 +1,10 @@
-var http = require('http');
-var https = require('https');
+
 var cheerio = require('cheerio');
 import { rulers } from './ruler/ruler.js'
 
 //请求函数
 function Spider(ruler){
-	https.get(ruler.getOptions, function(res){
+	ruler.protocol.get(ruler.getOptions, function(res){
 		var html = '';
 		//设置编码，防止中文出现乱码
 		res.setEncoding('utf-8');
@@ -15,9 +14,12 @@ function Spider(ruler){
 		});
 		//监听end事件,响应接收完成后处理
 		res.on('end', function(){  
+			console.log(html)
 			var $ = cheerio.load(html);
 			//根据类名逐条遍历
 			$(ruler.className).each(function(index, item){
+				console.log("enter each...");
+				console.log(eval(ruler.title));
 				var collectionEntity = new ruler.collectionName({
 				    num: ruler.num += 1,
 				    website: ruler.website,
@@ -37,4 +39,4 @@ function Spider(ruler){
 	});
 }
 
-Spider(rulers[0]);
+Spider(rulers[1]);
