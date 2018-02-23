@@ -5,6 +5,7 @@ import { rulers } from './ruler/ruler.js'
 //请求函数
 function Spider(ruler){
 	ruler.protocol.get(ruler.getOptions, function(res){
+		//抓到的数据
 		var html = '';
 		//设置编码，防止中文出现乱码
 		res.setEncoding('utf-8');
@@ -14,12 +15,15 @@ function Spider(ruler){
 		});
 		//监听end事件,响应接收完成后处理
 		res.on('end', function(){  
-			console.log(html)
+			//console.log(html)
 			var $ = cheerio.load(html);
+			
+			//test
+			console.log($(ruler.className)[1]);
 			//根据类名逐条遍历
 			$(ruler.className).each(function(index, item){
-				console.log("enter each...");
-				console.log(eval(ruler.title));
+				//console.log("enter each...");
+				console.log(typeof eval(ruler.title));
 				var collectionEntity = new ruler.collectionName({
 				    num: ruler.num += 1,
 				    website: ruler.website,
@@ -39,4 +43,4 @@ function Spider(ruler){
 	});
 }
 
-Spider(rulers[1]);
+Spider(rulers[0]);

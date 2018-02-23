@@ -1,5 +1,5 @@
 var express = require('express')
-var news = require('../db/database.js').news;
+var news = require('../db/database.js').huxiu;
 var app = express();
 
 //请求根路径
@@ -11,7 +11,7 @@ app.get('/', function(req, res){
 			 var newsList = (function(){
 			 	var total = "";
 			 	for(var i=0;i<result.length;i++){
-			 		total += result[i].title + result[i].url + "\n";
+			 		total += "<a target='_blank' href=" + result[i].url+ ">" + result[i].title + "</a>" + "</br></br>";
 			 	}
 			 	return total;
 			 })()

@@ -13,6 +13,6 @@ var newsSchema = new Schema(
 );
 
 var huxiu = db.model('huxiu', newsSchema);
-var kr36 = db.model('kr36', newsSchema);
+var baijias = db.model('baijia', newsSchema);
 
-export { huxiu, kr36 }
+export { huxiu, baijias }

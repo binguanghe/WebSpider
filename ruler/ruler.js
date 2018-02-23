@@ -1,6 +1,6 @@
 var http = require('http');
 var https = require('https');
-import { huxiu, kr36 } from '../db/database.js'
+import { huxiu, baijia } from '../db/database.js'
 
 //存放规则的数组
 var rulers;
@@ -27,21 +27,21 @@ rulerOfHuxiu = {
 	url: '"https://www.huxiu.com" + $(this).children().children().first().attr("href")'
 }
 
-//36kr
+//百度百家
 rulerOf36kr = {
-	protocol: http,
+	protocol: https,
 	getOptions: {
-		host: "36kr.com",
+		host: "baijia.baidu.com",
 		path: "",
 		headers: {
 			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36'
 	    }
 	},
-	className: ".img_box",
-	collectionName: kr36,
+	className: ".title",
+	collectionName: baijia,
 	num: 0,
-	website: "36kr",
-	title: "$(this).children().first.attr('href')",
+	website: "百度百家",
+	title: "$(this).children().first().text()",
 	url: ''
 }
 
