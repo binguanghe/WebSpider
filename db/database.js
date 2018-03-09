@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+  var mongoose = require('mongoose');
 var db = mongoose.connect('mongodb://localhost/spider');
 var Schema = mongoose.Schema;
 
@@ -13,6 +13,6 @@ var newsSchema = new Schema(
 );
 
 var huxiu = db.model('huxiu', newsSchema);
-var baijias = db.model('baijia', newsSchema);
+var baijia = db.model('baijia', newsSchema);
 
-export { huxiu, baijias }
+export { huxiu, baijia }

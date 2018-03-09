@@ -7,7 +7,7 @@ var rulers;
 
 //规则名称
 var rulerOfHuxiu,
-	rulerOf36kr;
+	rulerOfBaijia;
 
 //虎嗅网
 rulerOfHuxiu = {
@@ -28,7 +28,7 @@ rulerOfHuxiu = {
 }
 
 //百度百家
-rulerOf36kr = {
+rulerOfBaijia = {
 	protocol: https,
 	getOptions: {
 		host: "baijia.baidu.com",
@@ -41,10 +41,10 @@ rulerOf36kr = {
 	collectionName: baijia,
 	num: 0,
 	website: "百度百家",
-	title: "$(this).children().first().text()",
-	url: ''
+	title: "$(this).children().first().text().replace(/\\n/g, '')",
+	url: '"https://baijia.baidu.com" + $(this).children().first().attr("href")'
 }
 
-rulers = [rulerOfHuxiu, rulerOf36kr];
+rulers = [rulerOfHuxiu, rulerOfBaijia];
 
 export { rulers };

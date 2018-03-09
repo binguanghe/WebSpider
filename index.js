@@ -15,15 +15,9 @@ function Spider(ruler){
 		});
 		//监听end事件,响应接收完成后处理
 		res.on('end', function(){  
-			//console.log(html)
 			var $ = cheerio.load(html);
-			
-			//test
-			console.log($(ruler.className)[1]);
 			//根据类名逐条遍历
 			$(ruler.className).each(function(index, item){
-				//console.log("enter each...");
-				console.log(typeof eval(ruler.title));
 				var collectionEntity = new ruler.collectionName({
 				    num: ruler.num += 1,
 				    website: ruler.website,
@@ -43,4 +37,4 @@ function Spider(ruler){
 	});
 }
 
-Spider(rulers[0]);
+Spider(rulers[1]);
