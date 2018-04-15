@@ -12,7 +12,9 @@ var newsSchema = new Schema(
     { versionKey: false}//关闭版本锁
 );
 
-var huxiu = db.model('huxiu', newsSchema);
-var baijia = db.model('baijia', newsSchema);
-
-export { huxiu, baijia }
+var arrayOfSchema = ['huxiu','baijia'];
+var arrayOfModel = [];
+for(var i=0;i<arrayOfSchema.length;i++){
+	arrayOfModel.push(db.model(arrayOfSchema[i],newsSchema));
+}
+export { arrayOfModel };

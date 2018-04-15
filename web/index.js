@@ -1,14 +1,13 @@
 var express = require('express');
-var baijia = require('../db/database.js').baijia;
-var huxiu = require('../db/database.js').huxiu;
+import { arrayOfModel } from '../db/database.js'
 var async = require('async');
-var app = express();
+var server = express();
 var path = require('path')
 
 //设置模板引擎和模板文件的位置
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(__dirname + '/public'));//路由
+server.set('view engine', 'ejs');
+server.set('views', path.join(__dirname, 'views'));
+server.use(express.static(__dirname + '/public'));//路由
 
 
 var totalOut = "";
@@ -29,27 +28,18 @@ function selectWebsite(websiteCollectionName,displayQuantity){
 }
 
 async function asyncFind(){
-	var f1 = await function(){
-		selectWebsite(baijia,10);
-		console.log(1);
-	};
-	var f2 = await function(){
-		selectWebsite(huxiu,10);
-		console.log(2)
-	};
-	f1();
-	f2();
-	console.log("the end")
+	for(let i =0;i<=arrayOfModel.length;i++){
+		await selectWebsite(arrayOfModel[i],10)
+	}
 }
 
 asyncFind();
 
-
-app.get('/', function(req, res){
+server.get('/', function(req, res){
 	res.render('index', {title: '首页',siteBlock: totalOut});
 	res.end();	
 });
 //监听4500端口
-app.listen(4500, function(){
-	console.log("app is running...")
+server.listen(80, function(){
+	console.log("server is running...")
 })
