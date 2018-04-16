@@ -16,4 +16,5 @@
 1. http和https请求不同以及www导致的301重定向问题
 2. mongoDB自动给集合名字添加“s”问题
 3. NodeJS同步执行问题
+4. indexOf以及search方法无法匹配空白符问题
 

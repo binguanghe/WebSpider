@@ -37,6 +37,74 @@ var rulers = [
 		website: "百度百家",
 		title: "$(this).children().first().text().replace(/\\n/g, '')",
 		url: '"https://baijia.baidu.com" + $(this).children().first().attr("href")'
+	},
+	//简书
+	{
+		protocol: https,
+		getOptions: {
+			host: "www.jianshu.com",
+			path: "",
+			headers: {
+				'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36'
+		    }
+		},
+		className: ".title",
+		collectionName: arrayOfModel[2],
+		num: 0,
+		website: "简书",
+		title: '$(this).text()',
+		url: '"https://www.jianshu.com" + $(this).attr("href")'
+	},
+	//爱范儿
+	{
+		protocol: http,
+		getOptions: {
+			host: "www.ifanr.com",
+			path: "",
+			headers: {
+				'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36'
+		    }
+		},
+		className: ".cover-block",
+		collectionName: arrayOfModel[3],
+		num: 0,
+		website: "爱范儿",
+		title: '$(this).next().text()',
+		url: '$(this).attr("href")'
+	},
+	//OSC前端
+	{
+		protocol: https,
+		getOptions: {
+			host: "www.oschina.net",
+			path: "/blog?classification=428612",
+			headers: {
+				'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36'
+		    }
+		},
+		className: ".blog-title-link",
+		collectionName: arrayOfModel[4],
+		num: 0,
+		website: "OSC前端",
+		title: '$(this).children().first().text()',
+		url: '$(this).attr("href")'
+	},
+	//OSC前端
+	{
+		protocol: https,
+		getOptions: {
+			host: "www.csdn.net",
+			path: "",
+			headers: {
+				'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36'
+		    }
+		},
+		className: ".title",
+		collectionName: arrayOfModel[5],
+		num: 0,
+		website: "CSDN",
+		title: '$(this).children().children().first().text().replace(/\\n/g, "").trim()',
+		url: '$(this).children().children().first().attr("href")'
 	}
 ]
 

@@ -1,5 +1,5 @@
-
 var cheerio = require('cheerio');
+var async = require('async');
 import { rulers } from './ruler/ruler.js'
 
 //请求函数
@@ -18,7 +18,11 @@ function Spider(ruler){
 			var $ = cheerio.load(html);
 			//根据类名逐条遍历
 			$(ruler.className).each(function(index, item){
-				if(eval(ruler.title).search(/undefined/) == -1 && eval(ruler.url).search(/undefined/) == -1){//过滤抓到的无效标题/链接
+				//过滤抓到无效标题/链接的规则
+				var filter = eval(ruler.title).search(/undefined/) == -1 &&
+							 eval(ruler.title).length !== 0 &&
+							 eval(ruler.url).search(/undefined/) == -1;
+				if(filter){
 					var collectionEntity = new ruler.collectionName({
 					    num: ruler.num += 1,
 					    website: ruler.website,
@@ -39,6 +43,7 @@ function Spider(ruler){
 	});
 }
 
+//根据规则数组批量抓取
 for(var i=0;i<rulers.length;i++){
 	Spider(rulers[i]);
 }
