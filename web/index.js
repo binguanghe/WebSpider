@@ -7,7 +7,7 @@ import { arrayOfModel } from '../db/database.js'
 //设置模板引擎和模板文件的位置
 server.set('view engine', 'ejs');
 server.set('views', path.join(__dirname, 'views'));
-server.use(express.static(__dirname + '/public'));//路由
+server.use(express.static(__dirname + '/public'));
 
 //一次性查询的结果
 var totalOut = "";
@@ -31,7 +31,7 @@ function selectWebsite(websiteCollectionName,displayQuantity){
 //同步查询集合
 async function asyncFind(){
 	for(let i =0;i<=arrayOfModel.length;i++){
-		await selectWebsite(arrayOfModel[i],5)
+		await selectWebsite(arrayOfModel[i],5);
 	}
 }
 asyncFind();

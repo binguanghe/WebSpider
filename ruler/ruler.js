@@ -3,7 +3,7 @@ var https = require('https');
 import { arrayOfModel } from '../db/database.js'
 
 //存放规则的数组
-var rulers = [
+export var rulers = [
 	//虎嗅网
 	{
 		protocol: https,
@@ -89,7 +89,7 @@ var rulers = [
 		title: '$(this).children().first().text()',
 		url: '$(this).attr("href")'
 	},
-	//OSC前端
+	//CSDN
 	{
 		protocol: https,
 		getOptions: {
@@ -106,6 +106,5 @@ var rulers = [
 		title: '$(this).children().children().first().text().replace(/\\n/g, "").trim()',
 		url: '$(this).children().children().first().attr("href")'
 	}
-]
+];
 
-export { rulers };

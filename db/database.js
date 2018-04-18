@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 //定义通用文档
 var newsSchema = new Schema(
     {
-        website:String,
+        website : String,
         num : Number,
         title : String,
         url : String
