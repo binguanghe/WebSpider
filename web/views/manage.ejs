@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style type="text/css">
       body{
-        background-color: #e6e6e6;
+          background-color: #e6e6e6;
       }
       nav{
         position: fixed;
@@ -24,10 +24,30 @@
         text-decoration: none;
       }
       .container{
+        background-color: grey;
+      }
+      .welcome{
+        text-align: center;
+      }
+      .col-center-block{  
+          float: none;  
+          display: block;
+          margin-left: auto;  
+          margin-right: auto;  
+      }
+      form {
+        color: #fff;
+      }
+      label{
+        display: inline-block;
+        cursor: pointer;
+        margin:0 auto;
+      }
+       .container{
         color: #21759b;
         background-color: #f6f8fa;
       }
-      .container a{
+      .container form{
         color:#21759b;
       }
     </style>
@@ -36,13 +56,19 @@
     <nav class="navbar sticky-top bg-dark flex-md-nowrap">
       <p>爬虫新闻系统<%= title %></p>
       <div style="display:inline-block;position: absolute;right: 20px;">
-          <a href="/login">登录</a>
-          <a href="/register">注册</a>
+          <a href="/user">返回用户中心</a>
       </div>
     </nav>
     <div class="container">
       <div class="row">
-         <%- siteBlock %>
+         <div class="col-xs-12 col-center-block">
+           <form action="/manage" method="POST">
+            <%= username %>用户您好！请选择您感兴趣的网站：<br><br>
+               <%- allSitesModel %>
+               <br>
+               <button id="submit" class="btn btn-md btn-primary btn-block" type="submit">提交并返回用户中心</button>
+          </form>
+         </div>
       </div>
     </div>
     <!-- Optional JavaScript -->

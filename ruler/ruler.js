@@ -21,11 +21,11 @@ export var rulers = [
 		title: "$(this).children().children().first().text()",
 		url: '"https://www.huxiu.com" + $(this).children().children().first().attr("href")'
 	},
-	//百度百家
+	//IT之家
 	{
 		protocol: https,
 		getOptions: {
-			host: "baijia.baidu.com",
+			host: "it.ithome.com",
 			path: "",
 			headers: {
 				'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36'
@@ -34,9 +34,9 @@ export var rulers = [
 		className: ".title",
 		collectionName: arrayOfModel[1],
 		num: 0,
-		website: "百度百家",
-		title: "$(this).children().first().text().replace(/\\n/g, '')",
-		url: '"https://baijia.baidu.com" + $(this).children().first().attr("href")'
+		website: "IT之家",
+		title: "$(this).children().first().text()",
+		url: '$(this).children().first().attr("href")'
 	},
 	//简书
 	{
@@ -107,4 +107,3 @@ export var rulers = [
 		url: '$(this).children().children().first().attr("href")'
 	}
 ];
-

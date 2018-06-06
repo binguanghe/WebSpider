@@ -8,7 +8,7 @@ function Spider(ruler){
 		//抓到的数据
 		var html = '';
 		//设置编码，防止中文出现乱码
-		res.setEncoding('utf-8');
+		res.setEncoding('utf8');
 		//监听data事件，分段获取抓取的数据
 		res.on('data', function(chunk){
 			html += chunk;
@@ -44,6 +44,16 @@ function Spider(ruler){
 }
 
 //根据规则数组批量抓取
-for(var i=0;i<rulers.length;i++){
+/*for(var i=0;i<rulers.length;i++){
 	Spider(rulers[i]);
-}
+}*/
+
+(async function(){
+	for(let i =0;i<rulers.length;i++){
+		try{
+			await Spider(rulers[i]);
+		} catch (e){
+			console.log(e);
+		}
+	}
+})();

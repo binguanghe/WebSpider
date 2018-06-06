@@ -18,12 +18,17 @@
       a,li,p{
         color:#fff;
         margin:0;
+        list-style: none;
+        text-decoration: none;
       }
       a:hover{
         color:#fff;
         text-decoration: none;
       }
-      .container{
+      .welcome{
+        text-align: center;
+      }
+       .container{
         color: #21759b;
         background-color: #f6f8fa;
       }
@@ -34,15 +39,15 @@
   </head>  
   <body>
     <nav class="navbar sticky-top bg-dark flex-md-nowrap">
-      <p>爬虫新闻系统<%= title %></p>
+      <p><%= username %>，以下是您定制的新闻噢！</p>
       <div style="display:inline-block;position: absolute;right: 20px;">
-          <a href="/login">登录</a>
-          <a href="/register">注册</a>
+          <a href="/manage">定制新闻</a>
+          <a href="/logout">退出</a>
       </div>
     </nav>
     <div class="container">
       <div class="row">
-         <%- siteBlock %>
+         <%- userLikedSitesModel %>
       </div>
     </div>
     <!-- Optional JavaScript -->

@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost/spider');
+var db = mongoose.createConnection('mongodb://localhost/spider');
 var Schema = mongoose.Schema;
 
-//定义通用文档
+//定义新闻文档
 var newsSchema = new Schema(
     {
         website : String,
@@ -13,10 +13,30 @@ var newsSchema = new Schema(
     { versionKey: false }//关闭版本锁
 );
 
+var user = new Schema(
+	{
+		username: {
+			type: String,
+			required: true
+		},
+		password: {
+			type: String,
+			required: true
+		},
+		likedSites: {
+			type: Array
+		}
+   },
+   { versionKey: false }
+);
+
+var userModel = db.model('user',user);
+
+
 //抓取的站点
 var arrayOfSchema = [
 	'huxiu',
-	'baijia',
+	'ITHome',
 	'jianshu',
 	'aifaner',
 	'OSCFrontEnd',
@@ -31,4 +51,4 @@ for(var i=0;i<arrayOfSchema.length;i++){
 	arrayOfModel.push(db.model(arrayOfSchema[i],newsSchema));
 }
 
-export { arrayOfModel };
+export { userModel, arrayOfModel };

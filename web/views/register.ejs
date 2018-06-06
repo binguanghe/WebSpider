@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title><%= title %></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style type="text/css">
+            .col-center-block{  
+                float: none;  
+                display: block;
+                margin-top: 10%;  
+                margin-left: auto;  
+                margin-right: auto;  
+            } 
+            .h2Center{
+                text-align: center;
+            }
+            nav{
+                position: fixed;
+                padding: 0;
+            }
+            .navbar a,li,p{
+                color:#fff;
+                margin:0;
+            }
+            a:hover{
+                text-decoration: none;
+              }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar sticky-top bg-dark flex-md-nowrap">
+            <p>爬虫新闻系统<%= title %></p>
+            <div style="display:inline-block;position: absolute;right: 20px;">
+              <a href="/">返回首页</a>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-center-block">
+                     <form action="/register" method="post">
+                        <div class="form-group">
+                            <h2 class="h2Center">注册</h2>
+                            <input type="text"  id="username" class="form-control" name="username" placeholder="请输入用户名..."><br>
+                            <input type="password" id="password" class="form-control" name="password" placeholder="请输入密码..."><br>
+                            <input type="password" id="password2" class="form-control" name="password2" placeholder="请再次输入密码..."><br>
+                            <button id="submit" class="btn btn-md btn-primary btn-block" type="submit">注册</button>  
+                        </div>
+                        已有账号？<a href="/login">点此登录</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <script type="text/javascript">
+           $(document).ready(function(){
+                $("#username").focus();
+                var submit =  $("#submit");
+                submit.on('click',function(){
+                    var username = $("#username").val();
+                    var password = $("#password").val();
+                    var password2 = $("#password2").val();
+
+                    if(username.length == 0){
+                        alert("用户名不合法！");
+                        $("#username").focus();
+                        return false;
+                    }else if(password.length == 0){
+                        alert("密码不能为空！");
+                        $("#password").focus();
+                        return false;
+                    }else if(password2.length == 0){
+                        alert("确认密码不能为空！");
+                        $("#password2").focus();
+                        return false;
+                    }else if (password !== password2) {
+                        alert("密码不一致！");
+                        $("#password2").focus();
+                        return false;
+                    }/*else{
+                        var postData = {"username":username, "password":password};
+                        $.ajax({
+                            url : "/register",
+                            data : postData,
+                            method : 'POST',
+                            success : function(){
+                                
+                            } 
+                        })
+                    }*/
+                })                
+            });
+        </script>
+    </body>
+</html>
